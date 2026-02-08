@@ -1,5 +1,6 @@
 import { Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const testimonials = [
   {
@@ -23,23 +24,25 @@ export default function TestimonialsSection() {
   return (
     <section id="testimonials" className="py-24 bg-card/50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Testimonials</p>
           <h2 className="text-3xl sm:text-4xl font-bold">What People Say</h2>
-        </div>
+        </ScrollReveal>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {testimonials.map((t) => (
-            <Card key={t.name} className="bg-card border-border/50">
-              <CardContent className="pt-8 pb-6">
-                <Quote className="h-8 w-8 text-primary/30 mb-4" />
-                <p className="text-foreground leading-relaxed mb-6 italic">"{t.quote}"</p>
-                <div>
-                  <p className="font-semibold text-foreground">{t.name}</p>
-                  <p className="text-sm text-muted-foreground">{t.role}</p>
-                </div>
-              </CardContent>
-            </Card>
+          {testimonials.map((t, i) => (
+            <ScrollReveal key={t.name} delay={i * 100}>
+              <Card className="bg-card border-border/50 h-full">
+                <CardContent className="pt-8 pb-6">
+                  <Quote className="h-8 w-8 text-primary/30 mb-4" />
+                  <p className="text-foreground leading-relaxed mb-6 italic">"{t.quote}"</p>
+                  <div>
+                    <p className="font-semibold text-foreground">{t.name}</p>
+                    <p className="text-sm text-muted-foreground">{t.role}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </ScrollReveal>
           ))}
         </div>
       </div>

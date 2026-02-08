@@ -1,12 +1,14 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import GeometricBackground from "@/components/GeometricBackground";
 
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
       <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+      <GeometricBackground />
 
       <div className="relative z-10 container mx-auto px-4 text-center py-32">
         <p className="text-primary font-medium tracking-widest uppercase text-sm mb-6 animate-fade-in">
