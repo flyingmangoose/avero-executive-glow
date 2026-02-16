@@ -62,7 +62,7 @@ export default function BookSection() {
   return (
     <section id="book" className="relative" style={{ background: "#0c1e3a" }}>
       {/* ===== Part A: Book Hero ===== */}
-      <div className="py-24 lg:py-32">
+      <div className="py-12 lg:py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
             {/* Book cover */}
@@ -86,23 +86,23 @@ export default function BookSection() {
                   Coming Soon — Spring 2026
                 </p>
               </ScrollReveal>
-              <ScrollReveal delay={100}>
+              <ScrollReveal delay={50}>
                 <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3 font-serif" style={{ color: "#f5f0e8" }}>
                   Start at Zero
                 </h2>
               </ScrollReveal>
-              <ScrollReveal delay={150}>
+              <ScrollReveal delay={75}>
                 <p className="text-xl lg:text-2xl font-serif italic mb-8" style={{ color: "#b8dff0" }}>
                   Leading High-Stakes Modernization in the Age of AI
                 </p>
               </ScrollReveal>
-              <ScrollReveal delay={200}>
+              <ScrollReveal delay={100}>
                 <p className="leading-relaxed mb-10 max-w-lg mx-auto md:mx-0 text-base lg:text-lg" style={{ color: "#a0aec0" }}>
                   Government ERP projects fail at rates that would be scandalous in any other sector. This book reveals why the failures are structural — and delivers the playbook that prevents the next $216&nbsp;million disaster before it starts.
                 </p>
               </ScrollReveal>
 
-              <ScrollReveal delay={250}>
+              <ScrollReveal delay={150}>
                 <div className="flex flex-col sm:flex-row gap-4 items-center md:items-start">
                   <Button size="lg" className="w-full sm:w-auto" onClick={scrollToReserve}>
                     Reserve Your Signed Copy
@@ -127,11 +127,11 @@ export default function BookSection() {
       </div>
 
       {/* ===== Part B: The Numbers ===== */}
-      <div className="py-20 border-y" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+      <div className="py-8 border-y" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-center">
             {stats.map((s, i) => (
-              <ScrollReveal key={i} delay={i * 100}>
+              <ScrollReveal key={i} delay={i * 50}>
                 <div className="text-4xl sm:text-5xl font-bold mb-2" style={{ color: "hsl(20 90% 48%)" }}>
                   {s.number}
                 </div>
@@ -145,20 +145,20 @@ export default function BookSection() {
       </div>
 
       {/* ===== Part C: Three Forces ===== */}
-      <div className="py-24">
+      <div className="py-10">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <ScrollReveal>
               <p className="font-medium tracking-[0.2em] uppercase text-sm mb-4" style={{ color: "hsl(20 90% 48%)" }}>
                 The Convergence
               </p>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <ScrollReveal delay={50}>
               <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif mb-6" style={{ color: "#f5f0e8" }}>
                 Three Forces Creating Extraordinary Risk
               </h3>
             </ScrollReveal>
-            <ScrollReveal delay={150}>
+            <ScrollReveal delay={100}>
               <p className="max-w-xl mx-auto leading-relaxed" style={{ color: "#8899a6" }}>
                 Thousands of government organizations are simultaneously entering the market for new enterprise systems. Most aren't prepared for what's coming.
               </p>
@@ -167,7 +167,7 @@ export default function BookSection() {
 
           <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
             {forces.map((f, i) => (
-              <ScrollReveal key={i} delay={i * 100}>
+              <ScrollReveal key={i} delay={i * 50}>
                 <div
                   className="rounded-xl p-8 h-full"
                   style={{
@@ -192,20 +192,20 @@ export default function BookSection() {
       </div>
 
       {/* ===== Part D: Case Studies ===== */}
-      <div className="py-24">
+      <div className="py-10">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <ScrollReveal>
               <p className="font-medium tracking-[0.2em] uppercase text-sm mb-4" style={{ color: "hsl(20 90% 48%)" }}>
                 The Evidence
               </p>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <ScrollReveal delay={50}>
               <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif mb-6" style={{ color: "#f5f0e8" }}>
                 Same Challenge. Opposite Outcomes.
               </h3>
             </ScrollReveal>
-            <ScrollReveal delay={150}>
+            <ScrollReveal delay={100}>
               <p className="max-w-xl mx-auto leading-relaxed" style={{ color: "#8899a6" }}>
                 The difference wasn't the software, the vendor, or the staff. It was whether someone in the room had both the authority and the incentive to protect their interests.
               </p>
@@ -246,7 +246,7 @@ export default function BookSection() {
             </ScrollReveal>
 
             {/* Success case */}
-            <ScrollReveal delay={100}>
+            <ScrollReveal delay={50}>
               <div
                 className="rounded-xl p-8 h-full flex flex-col"
                 style={{
@@ -281,20 +281,20 @@ export default function BookSection() {
       </div>
 
       {/* ===== Part E: Chapter Grid ===== */}
-      <div id="chapters" className="py-24">
+      <div id="chapters" className="py-10">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <ScrollReveal>
               <p className="font-medium tracking-[0.2em] uppercase text-sm mb-4" style={{ color: "hsl(20 90% 48%)" }}>
                 Inside the Book
               </p>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
+            <ScrollReveal delay={50}>
               <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif mb-6" style={{ color: "#f5f0e8" }}>
                 The Complete Modernization Playbook
               </h3>
             </ScrollReveal>
-            <ScrollReveal delay={150}>
+            <ScrollReveal delay={100}>
               <p className="max-w-xl mx-auto leading-relaxed" style={{ color: "#8899a6" }}>
                 12 chapters. Real case studies. Actionable frameworks. Every phase from first recognition to post-go-live governance.
               </p>
@@ -303,7 +303,7 @@ export default function BookSection() {
 
           <div className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {chapters.map((ch, i) => (
-              <ScrollReveal key={i} delay={(i % 3) * 80}>
+              <ScrollReveal key={i} delay={(i % 3) * 40}>
                 <div
                   className="rounded-lg p-5 h-full"
                   style={{
@@ -328,7 +328,7 @@ export default function BookSection() {
       </div>
 
       {/* ===== Part F: Reservation Form ===== */}
-      <div id="reserve" className="py-24">
+      <div id="reserve" className="py-10">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <ScrollReveal>
