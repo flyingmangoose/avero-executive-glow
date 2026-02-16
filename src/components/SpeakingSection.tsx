@@ -15,11 +15,11 @@ const channels = [
 ];
 
 const topics = [
-  "AI & Automation in Government",
+  "ERP Modernization for Government",
+  "AI Readiness & Responsible AI",
   "Digital Transformation Strategy",
-  "ERP Modernization",
-  "GovTech Innovation",
-  "Leadership in Technology",
+  "Vendor-Neutral Technology Advisory",
+  "Change Management & Executive Alignment",
   "Other",
 ];
 

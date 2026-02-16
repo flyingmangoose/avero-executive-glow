@@ -5,6 +5,8 @@ const clients = [
   "City of San Jose",
   "Port of Portland",
   "State of New Mexico",
+  "Tarrant County, TX",
+  "Monroe County, NY",
   "City of Albuquerque",
   "Bernalillo County",
 ];
