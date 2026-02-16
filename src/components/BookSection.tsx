@@ -32,7 +32,7 @@ export default function BookSection() {
               <div className="relative transition-transform duration-700 ease-out group-hover:[transform:rotateY(-8deg)_rotateX(4deg)_scale(1.03)]">
                 <img
                   src={bookCover}
-                  alt="Transforming Government book cover"
+                  alt="Start at Zero book cover"
                   className="relative w-72 sm:w-80 lg:w-96 rounded-lg shadow-2xl ring-1 ring-primary/30"
                 />
 
@@ -61,18 +61,18 @@ export default function BookSection() {
               </p>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3">The Book</h2>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3">Start at Zero</h2>
             </ScrollReveal>
             <ScrollReveal delay={150}>
               <p className="text-xl lg:text-2xl font-serif text-primary/80 italic mb-8">
-                Transforming Government: A Leader's Guide to Digital Innovation
+                Leading High-Stakes Modernization in the Age of AI
               </p>
             </ScrollReveal>
             <ScrollReveal delay={200}>
               <p className="text-muted-foreground leading-relaxed mb-10 max-w-lg mx-auto md:mx-0 text-base lg:text-lg">
-                Drawing from two decades of hands-on experience modernizing government agencies, this
+                Drawing from two decades of hands-on experience leading high-stakes modernization efforts, this
                 upcoming book reveals the strategies, frameworks, and hard-won lessons behind successful
-                public sector digital transformation.
+                digital transformation in the age of AI.
               </p>
             </ScrollReveal>
 
