@@ -1,13 +1,16 @@
-import { Building2, Brain, Cpu, Database, UserCog } from "lucide-react";
+import { Building2, Brain, Cpu, Database, UserCog, Shield, FileSearch, RefreshCw } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const services = [
-  { icon: Building2, title: "GovTech Consulting", desc: "Strategic advisory for government agencies adopting modern technology platforms and cloud infrastructure." },
-  { icon: Cpu, title: "Digital Transformation", desc: "End-to-end transformation strategies that modernize legacy systems and improve citizen-facing services." },
-  { icon: Brain, title: "AI & Automation Advisory", desc: "Implementing intelligent automation and AI solutions to streamline government operations and decision-making." },
-  { icon: Database, title: "ERP Strategy & Implementation", desc: "Enterprise resource planning roadmaps, vendor selection, and implementation oversight for public sector." },
-  { icon: UserCog, title: "Executive Advisory & Fractional CTO", desc: "On-demand executive technology leadership for organizations navigating complex IT transformations." },
+  { icon: Database, title: "ERP Advisory & Selection", desc: "Vendor-neutral assessment, requirements definition, RFP development, and selection facilitation designed for government procurement." },
+  { icon: Shield, title: "Implementation Oversight & IV&V", desc: "Independent verification throughout implementation, ensuring vendors deliver on commitments and your interests are protected." },
+  { icon: UserCog, title: "Executive Alignment & Change Management", desc: "Get leadership aligned on risks, engagement needs, and decision rights before the integrator starts. Real OCM, not checkbox OCM." },
+  { icon: FileSearch, title: "Contract & Data Advisory", desc: "Independent contract review to protect agency interests, plus comprehensive data assessment, cleansing strategy, and migration planning." },
+  { icon: Brain, title: "AI Maturity & Readiness", desc: "Practical, responsible AI strategies using our proprietary 5-level maturity model designed specifically for government agencies." },
+  { icon: Cpu, title: "Digital Transformation Advisory", desc: "Comprehensive modernization strategy combining deep government expertise with AI-powered delivery via our Savoi.ai platform." },
+  { icon: RefreshCw, title: "Project Recovery", desc: "Rapid assessment and recovery planning when implementations go sideways—revised scope, vendor renegotiation, and governance overhaul." },
+  { icon: Building2, title: "Fractional CTO & Executive Advisory", desc: "On-demand executive technology leadership for agencies navigating complex IT transformations and modernization initiatives." },
 ];
 
 export default function ServicesSection() {
@@ -19,7 +22,7 @@ export default function ServicesSection() {
           <h2 className="text-3xl sm:text-4xl font-bold">What I Do</h2>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {services.map((s, i) => (
             <ScrollReveal key={s.title} delay={i * 80}>
               <Card className="bg-card border-border/50 hover:border-primary/30 transition-colors group h-full">

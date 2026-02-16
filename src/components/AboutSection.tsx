@@ -2,10 +2,10 @@ import { Award, TrendingUp, Users, Zap } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const stats = [
-  { icon: TrendingUp, label: "Years Experience", value: "20+" },
-  { icon: Users, label: "Government Clients", value: "50+" },
-  { icon: Award, label: "Digital Transformations", value: "100+" },
-  { icon: Zap, label: "AI Implementations", value: "30+" },
+  { icon: TrendingUp, label: "Years in Consulting", value: "20+" },
+  { icon: Users, label: "Team Members", value: "40+" },
+  { icon: Award, label: "Gov ERP Engagements", value: "30+" },
+  { icon: Zap, label: "Government Exclusive", value: "100%" },
 ];
 
 export default function AboutSection() {
@@ -18,7 +18,7 @@ export default function AboutSection() {
             Driving Public Sector Innovation
           </h2>
           <p className="text-muted-foreground leading-relaxed text-lg">
-            With over two decades in management consulting, I founded <span className="text-primary font-medium">Avero Advisors</span> to help government agencies and public sector organizations navigate the complexities of digital transformation. My expertise spans enterprise technology strategy, AI-powered automation, and ERP modernization—empowering agencies to deliver better citizen services through smarter technology.
+            <span className="text-primary font-medium">Avero Advisors</span> is an independent, vendor-neutral government technology and ERP modernization consulting firm. We serve state, local, and quasi-government agencies exclusively—every methodology, framework, and deliverable is built for government. Our human-centric, AI-powered approach delivers outcomes in weeks, not months, helping agencies modernize without disrupting day-to-day operations.
           </p>
         </ScrollReveal>
 

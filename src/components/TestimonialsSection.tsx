@@ -4,19 +4,19 @@ import ScrollReveal from "@/components/ScrollReveal";
 
 const testimonials = [
   {
-    quote: "Abhijit's strategic vision transformed our entire IT infrastructure. His deep understanding of government technology and ERP systems is unmatched.",
-    name: "Sarah Mitchell",
-    role: "CIO, County Government",
+    quote: "Avero's independent, vendor-neutral approach gave us confidence we were making the right ERP decision. They translated complex technology choices into clear executive-level insights so we always knew what was happening and why.",
+    name: "Government Executive",
+    role: "County Manager",
   },
   {
-    quote: "Working with Abhijit and Avero Advisors was a game-changer. They delivered a digital transformation roadmap that was both ambitious and achievable.",
-    name: "James Rodriguez",
-    role: "City Manager, Municipal Government",
+    quote: "They understood the fiscal pressure we were under and were transparent about total cost of ownership from day one. Their team worked alongside our staff without disrupting month-end processes—that alone was worth the investment.",
+    name: "Finance Director",
+    role: "Municipal Government",
   },
   {
-    quote: "His ability to translate complex AI concepts into practical government applications is exceptional. A true thought leader in the GovTech space.",
-    name: "Dr. Priya Sharma",
-    role: "Director of Innovation, State Agency",
+    quote: "Most consultants check the change management box. Avero actually got our leadership aligned before the integrator started. That made all the difference when we hit the inevitable bumps during implementation.",
+    name: "HR Director",
+    role: "State Agency",
   },
 ];
 
