@@ -33,7 +33,7 @@ export default function HeroSection() {
             I help government leaders prevent the next $216&nbsp;million technology disaster.
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
-            Abhijit Verekar — Author of <em>Start at Zero</em>, 5× Inc. 5000 CEO, and independent advisor to cities, counties, and states navigating high-stakes technology modernization.
+            Author of <em>Start at Zero</em> · 5× Inc. 5000 CEO · Independent Government Technology Advisor
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Button size="lg" asChild>
