@@ -243,7 +243,7 @@ export default function BookSection() {
             </ScrollReveal>
             <ScrollReveal delay={100}>
               <p className="max-w-xl mx-auto leading-relaxed" style={{ color: "#8899a6" }}>
-                12 chapters. Real case studies. Actionable frameworks. Every phase from first recognition to post-go-live governance.
+                12 chapters. 16+ ready-to-use templates, checklists & tools. Real case studies. Actionable frameworks. Every phase from first recognition to post-go-live governance.
               </p>
             </ScrollReveal>
           </div>
