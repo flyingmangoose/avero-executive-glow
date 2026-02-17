@@ -2,13 +2,12 @@ import ScrollReveal from "@/components/ScrollReveal";
 
 const clients = [
   "Santa Fe County",
-  "City of San Jose",
   "Port of Portland",
-  "State of New Mexico",
   "Tarrant County, TX",
   "Monroe County, NY",
-  "City of Albuquerque",
-  "Bernalillo County",
+  "Allegheny County",
+  "City of Knoxville",
+  "City of Winston Salem",
 ];
 
 export default function FeaturedSection() {
