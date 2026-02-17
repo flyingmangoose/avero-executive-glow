@@ -31,7 +31,7 @@ export default function AboutSection() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto">
           {stats.map((s, i) => (
             <ScrollReveal key={s.label} delay={i * 100}>
               <div className="glass-card rounded-lg p-6 text-center">
