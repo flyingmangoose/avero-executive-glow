@@ -29,10 +29,13 @@ export default function HeroSection() {
           <p className="text-primary font-medium tracking-[0.2em] uppercase text-sm mb-6 animate-fade-in">
             Founder &amp; CEO — Avèro Advisors
           </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-6 font-serif text-foreground leading-[1.1]">
-            Fixing government technology, before it breaks.
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-4 font-serif text-foreground leading-[1.1]">
+            Abhijit Verekar
           </h1>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
+          <p className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground mb-6">
+            Fixing government technology, before it breaks.
+          </p>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
             Author of <em>Start at Zero</em> · 5× Inc. 5000 CEO · Independent Government Technology Advisor
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
