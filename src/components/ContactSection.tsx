@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Linkedin, Youtube, Twitter, BookOpen, Send, Loader2 } from "lucide-react";
+import { Linkedin, Youtube, Twitter, BookOpen, Send, Loader2, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "@/components/ScrollReveal";
 import { submitToHubSpot, HUBSPOT_FORMS } from "@/lib/hubspot";
@@ -18,6 +18,7 @@ export default function ContactSection() {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,8 +33,7 @@ export default function ContactSection() {
     ]);
     setSubmitting(false);
     if (success) {
-      toast({ title: "Message sent!", description: "Thank you for reaching out. I'll be in touch shortly." });
-      setForm({ name: "", email: "", message: "" });
+      setSubmitted(true);
     } else {
       toast({ title: "Something went wrong", description: "Please try again or email directly.", variant: "destructive" });
     }
@@ -62,14 +62,22 @@ export default function ContactSection() {
           </ScrollReveal>
 
           <ScrollReveal delay={150}>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <Input placeholder="Your Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="bg-card border-border/50" />
-              <Input type="email" placeholder="Your Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required className="bg-card border-border/50" />
-              <Textarea placeholder="Your Message" rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required className="bg-card border-border/50" />
-              <Button type="submit" className="w-full" disabled={submitting}>
-                {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...</> : <>Send Message <Send className="ml-2 h-4 w-4" /></>}
-              </Button>
-            </form>
+            {submitted ? (
+              <div className="flex flex-col items-center justify-center text-center py-8">
+                <CheckCircle className="h-12 w-12 text-primary mb-4" />
+                <h4 className="text-2xl font-bold mb-2">Message Sent!</h4>
+                <p className="text-muted-foreground">Thank you for reaching out. I'll be in touch shortly.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <Input placeholder="Your Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="bg-card border-border/50" />
+                <Input type="email" placeholder="Your Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required className="bg-card border-border/50" />
+                <Textarea placeholder="Your Message" rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required className="bg-card border-border/50" />
+                <Button type="submit" className="w-full" disabled={submitting}>
+                  {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...</> : <>Send Message <Send className="ml-2 h-4 w-4" /></>}
+                </Button>
+              </form>
+            )}
           </ScrollReveal>
         </div>
       </div>
