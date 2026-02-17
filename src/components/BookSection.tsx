@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ArrowDown, CheckCircle, Loader2 } from "lucide-react";
 import bookCover from "@/assets/book-cover.jpg";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -71,7 +71,7 @@ const parts = [
 export default function BookSection() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [activePart, setActivePart] = useState(0);
+  
   const [formData, setFormData] = useState({ name: "", email: "", organization: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -248,76 +248,60 @@ export default function BookSection() {
             </ScrollReveal>
           </div>
 
-          <div className="max-w-5xl mx-auto relative">
+          <div className="max-w-3xl mx-auto">
             <ScrollReveal>
-              {/* Part selector tabs */}
-              <div className="flex justify-center gap-3 mb-8">
-                {parts.map((part, idx) => (
-                  <button
+              <Accordion type="single" collapsible defaultValue="part-1" className="space-y-4">
+                {parts.map((part, partIdx) => (
+                  <AccordionItem
                     key={part.id}
-                    onClick={() => setActivePart(idx)}
-                    className="px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300"
+                    value={part.id}
+                    className="rounded-xl overflow-hidden border-0"
                     style={{
-                      background: activePart === idx ? "rgba(255,255,255,0.08)" : "transparent",
-                      border: activePart === idx ? "1px solid rgba(255,255,255,0.15)" : "1px solid rgba(255,255,255,0.06)",
-                      color: activePart === idx ? "#f5f0e8" : "#64748b",
+                      background: "rgba(255,255,255,0.03)",
+                      border: "1px solid rgba(255,255,255,0.08)",
                     }}
                   >
-                    <span className="font-mono text-xs tracking-wider" style={{ color: activePart === idx ? "hsl(20 90% 48%)" : "inherit" }}>
-                      Part {idx + 1}
-                    </span>
-                  </button>
+                    <AccordionTrigger
+                      className="px-6 py-5 hover:no-underline hover:bg-[rgba(255,255,255,0.02)] [&[data-state=open]]:bg-[rgba(255,255,255,0.02)]"
+                    >
+                      <div className="text-left">
+                        <span className="font-mono text-xs font-bold tracking-[0.15em] uppercase block mb-1" style={{ color: "hsl(20 90% 48%)" }}>
+                          {part.title}
+                        </span>
+                        <span className="text-sm" style={{ color: "#8899a6" }}>
+                          {part.subtitle}
+                        </span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-6 pt-0">
+                      <div className="space-y-3">
+                        {part.chapters.map((ch, chIdx) => (
+                          <div
+                            key={chIdx}
+                            className="rounded-lg p-4 flex gap-4 items-start transition-colors hover:bg-[rgba(255,255,255,0.02)]"
+                            style={{
+                              borderLeft: "3px solid #b8dff0",
+                              background: "rgba(255,255,255,0.01)",
+                            }}
+                          >
+                            <span className="font-mono text-xs font-bold mt-0.5 shrink-0" style={{ color: "hsl(20 90% 48%)" }}>
+                              {String(partIdx === 0 ? chIdx + 1 : partIdx === 1 ? chIdx + 3 : chIdx + 7).padStart(2, "0")}
+                            </span>
+                            <div>
+                              <h5 className="font-bold text-sm mb-1" style={{ color: "#f5f0e8" }}>
+                                {ch.title}
+                              </h5>
+                              <p className="text-xs leading-relaxed" style={{ color: "#64748b" }}>
+                                {ch.desc}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
                 ))}
-              </div>
-
-              {/* Part subtitle */}
-              <p className="text-center text-sm mb-6" style={{ color: "#8899a6" }}>
-                {parts[activePart].subtitle}
-              </p>
-
-              {/* Carousel */}
-              <Carousel
-                opts={{ align: "start", loop: false }}
-                className="w-full"
-              >
-                <CarouselContent className="-ml-4">
-                  {parts[activePart].chapters.map((ch, chIdx) => {
-                    const chapterNum = activePart === 0 ? chIdx + 1 : activePart === 1 ? chIdx + 3 : chIdx + 7;
-                    return (
-                      <CarouselItem key={chIdx} className="pl-4 sm:basis-1/2 lg:basis-1/3">
-                        <div
-                          className="rounded-xl p-6 h-full flex flex-col transition-all duration-300 hover:translate-y-[-2px]"
-                          style={{
-                            background: "rgba(255,255,255,0.03)",
-                            border: "1px solid rgba(255,255,255,0.08)",
-                            minHeight: "180px",
-                          }}
-                        >
-                          <span className="font-mono text-2xl font-bold mb-3 block" style={{ color: "hsl(20 90% 48%/0.3)" }}>
-                            {String(chapterNum).padStart(2, "0")}
-                          </span>
-                          <h5 className="font-bold text-base mb-2" style={{ color: "#f5f0e8" }}>
-                            {ch.title}
-                          </h5>
-                          <p className="text-sm leading-relaxed mt-auto" style={{ color: "#64748b" }}>
-                            {ch.desc}
-                          </p>
-                        </div>
-                      </CarouselItem>
-                    );
-                  })}
-                </CarouselContent>
-                <div className="flex justify-center gap-4 mt-6">
-                  <CarouselPrevious
-                    className="static translate-y-0 border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)]"
-                    style={{ color: "#f5f0e8" }}
-                  />
-                  <CarouselNext
-                    className="static translate-y-0 border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)]"
-                    style={{ color: "#f5f0e8" }}
-                  />
-                </div>
-              </Carousel>
+              </Accordion>
             </ScrollReveal>
           </div>
         </div>
