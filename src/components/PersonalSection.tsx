@@ -6,7 +6,7 @@ const interests = [
   {
     icon: Bike,
     title: "Motorcycles",
-    desc: "Weekend rides and open roads. There's nothing like the freedom of two wheels to clear the mind and spark new ideas.",
+    desc: "Long adventure rides and open roads. There's nothing like the freedom of two wheels to clear the mind and spark new ideas.",
   },
   {
     icon: Camera,
@@ -30,8 +30,8 @@ const interests = [
   },
   {
     icon: Snowflake,
-    title: "Fitness & Cold Plunge",
-    desc: "Cold plunges, light cardio, and staying sharp. Discipline in health translates to discipline in business.",
+    title: "Fitness",
+    desc: "Weight training, cold plunges, sauna sessions, and staying sharp. Discipline in health translates to discipline in business.",
   },
 ];
 
