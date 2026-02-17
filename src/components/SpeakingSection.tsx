@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Mic, Youtube, BookOpen, Linkedin, CalendarDays, Users, MapPin, Send } from "lucide-react";
+import { Mic, Youtube, BookOpen, Linkedin, CalendarDays, Users, MapPin, Send, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "@/components/ScrollReveal";
+import { submitToHubSpot, HUBSPOT_FORMS } from "@/lib/hubspot";
 
 const channels = [
   { icon: Mic, title: "Keynote Speaking", desc: "Engaging talks on GovTech, AI adoption, and digital transformation at conferences nationwide.", cta: "Book a Talk" },
@@ -25,6 +26,7 @@ const topics = [
 
 export default function SpeakingSection() {
   const { toast } = useToast();
+  const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -37,13 +39,33 @@ export default function SpeakingSection() {
     details: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Request received!",
-      description: "Thank you for your interest. I'll review your request and get back to you within 48 hours.",
-    });
-    setForm({ name: "", email: "", organization: "", eventName: "", eventDate: "", location: "", topic: "", audienceSize: "", details: "" });
+    setSubmitting(true);
+    const [firstName, ...lastParts] = form.name.trim().split(" ");
+    const lastName = lastParts.join(" ") || "";
+    const success = await submitToHubSpot(HUBSPOT_FORMS.speakingRequest, [
+      { name: "firstname", value: firstName },
+      { name: "lastname", value: lastName },
+      { name: "email", value: form.email },
+      { name: "company", value: form.organization },
+      { name: "event_name", value: form.eventName },
+      { name: "event_date", value: form.eventDate },
+      { name: "location", value: form.location },
+      { name: "topic", value: form.topic },
+      { name: "audience_size", value: form.audienceSize },
+      { name: "message", value: form.details },
+    ]);
+    setSubmitting(false);
+    if (success) {
+      toast({
+        title: "Request received!",
+        description: "Thank you for your interest. I'll review your request and get back to you within 48 hours.",
+      });
+      setForm({ name: "", email: "", organization: "", eventName: "", eventDate: "", location: "", topic: "", audienceSize: "", details: "" });
+    } else {
+      toast({ title: "Something went wrong", description: "Please try again later.", variant: "destructive" });
+    }
   };
 
   return (
@@ -156,8 +178,8 @@ export default function SpeakingSection() {
                     <Textarea placeholder="Tell me about your event, audience, and what you'd like me to cover..." rows={4} value={form.details} onChange={(e) => setForm({ ...form, details: e.target.value })} className="bg-background border-border/50" />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full sm:w-auto">
-                    Submit Speaking Request <Send className="ml-2 h-4 w-4" />
+                  <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={submitting}>
+                    {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting...</> : <>Submit Speaking Request <Send className="ml-2 h-4 w-4" /></>}
                   </Button>
                 </form>
               </CardContent>
