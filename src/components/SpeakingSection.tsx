@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Mic, Youtube, BookOpen, Linkedin, CalendarDays, Users, MapPin, Send, Loader2, CheckCircle } from "lucide-react";
+import speakingPhoto from "@/assets/speaking-photo.png";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -70,7 +71,15 @@ export default function SpeakingSection() {
       <div className="container mx-auto px-4">
         <ScrollReveal className="text-center mb-16">
           <p className="text-primary font-medium tracking-widest uppercase text-sm mb-4">Thought Leadership</p>
-          <h2 className="text-3xl sm:text-4xl font-bold">Speaking & Content</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-8">Speaking & Content</h2>
+        </ScrollReveal>
+
+        {/* Speaking photo banner */}
+        <ScrollReveal className="max-w-5xl mx-auto mb-16">
+          <div className="relative rounded-xl overflow-hidden aspect-[21/9]">
+            <img src={speakingPhoto} alt="Abhijit Verekar speaking at a conference" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
+          </div>
         </ScrollReveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
