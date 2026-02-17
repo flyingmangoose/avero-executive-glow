@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowDown, CheckCircle } from "lucide-react";
+import { ArrowDown, CheckCircle, Loader2 } from "lucide-react";
 import bookCover from "@/assets/book-cover.jpg";
 import ScrollReveal from "@/components/ScrollReveal";
+import { submitToHubSpot, HUBSPOT_FORMS } from "@/lib/hubspot";
 
 const stats = [
   { number: "70%+", desc: "of large gov't IT projects fail to deliver intended benefits" },
@@ -47,12 +48,24 @@ const chapters = [
 
 export default function BookSection() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", organization: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Reservation form submitted:", formData);
-    setSubmitted(true);
+    setSubmitting(true);
+    const [firstName, ...lastParts] = formData.name.trim().split(" ");
+    const lastName = lastParts.join(" ") || "";
+    const success = await submitToHubSpot(HUBSPOT_FORMS.bookReservation, [
+      { name: "firstname", value: firstName },
+      { name: "lastname", value: lastName },
+      { name: "email", value: formData.email },
+      { name: "company", value: formData.organization },
+    ]);
+    setSubmitting(false);
+    if (success) {
+      setSubmitted(true);
+    }
   };
 
   const scrollToReserve = () => {
@@ -391,8 +404,8 @@ export default function BookSection() {
                           onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                           className="sm:flex-[3] bg-[#0a1628] border-[rgba(255,255,255,0.1)] text-[#f5f0e8] placeholder:text-[#4a5568]"
                         />
-                        <Button type="submit" size="lg" className="sm:flex-[2]">
-                          Reserve My Copy
+                        <Button type="submit" size="lg" className="sm:flex-[2]" disabled={submitting}>
+                          {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Reserving...</> : "Reserve My Copy"}
                         </Button>
                       </div>
                     </form>

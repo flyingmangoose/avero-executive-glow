@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Linkedin, Youtube, Twitter, BookOpen, Send } from "lucide-react";
+import { Linkedin, Youtube, Twitter, BookOpen, Send, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "@/components/ScrollReveal";
+import { submitToHubSpot, HUBSPOT_FORMS } from "@/lib/hubspot";
 
 const socials = [
   { icon: Linkedin, label: "LinkedIn", href: "#" },
@@ -16,11 +17,26 @@ const socials = [
 export default function ContactSection() {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Message sent!", description: "Thank you for reaching out. I'll be in touch shortly." });
-    setForm({ name: "", email: "", message: "" });
+    setSubmitting(true);
+    const [firstName, ...lastParts] = form.name.trim().split(" ");
+    const lastName = lastParts.join(" ") || "";
+    const success = await submitToHubSpot(HUBSPOT_FORMS.generalContact, [
+      { name: "firstname", value: firstName },
+      { name: "lastname", value: lastName },
+      { name: "email", value: form.email },
+      { name: "message", value: form.message },
+    ]);
+    setSubmitting(false);
+    if (success) {
+      toast({ title: "Message sent!", description: "Thank you for reaching out. I'll be in touch shortly." });
+      setForm({ name: "", email: "", message: "" });
+    } else {
+      toast({ title: "Something went wrong", description: "Please try again or email directly.", variant: "destructive" });
+    }
   };
 
   return (
@@ -50,8 +66,8 @@ export default function ContactSection() {
               <Input placeholder="Your Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="bg-card border-border/50" />
               <Input type="email" placeholder="Your Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required className="bg-card border-border/50" />
               <Textarea placeholder="Your Message" rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required className="bg-card border-border/50" />
-              <Button type="submit" className="w-full">
-                Send Message <Send className="ml-2 h-4 w-4" />
+              <Button type="submit" className="w-full" disabled={submitting}>
+                {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...</> : <>Send Message <Send className="ml-2 h-4 w-4" /></>}
               </Button>
             </form>
           </ScrollReveal>
