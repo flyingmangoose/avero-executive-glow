@@ -8,10 +8,10 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { submitToHubSpot, HUBSPOT_FORMS } from "@/lib/hubspot";
 
 const socials = [
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Youtube, label: "YouTube", href: "#" },
-  { icon: Twitter, label: "X / Twitter", href: "#" },
-  { icon: BookOpen, label: "Substack", href: "#" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/verekar/" },
+  { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@averekar" },
+  { icon: Twitter, label: "X / Twitter", href: "https://x.com/AbhijitVerekar" },
+  { icon: BookOpen, label: "Substack", href: "https://avavero.substack.com/" },
 ];
 
 export default function ContactSection() {
