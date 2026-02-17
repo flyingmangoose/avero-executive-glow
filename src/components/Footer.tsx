@@ -8,10 +8,10 @@ const links = [
 ];
 
 const socials = [
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Youtube, href: "#", label: "YouTube" },
-  { icon: Twitter, href: "#", label: "X" },
-  { icon: BookOpen, href: "#", label: "Substack" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/verekar/", label: "LinkedIn" },
+  { icon: Youtube, href: "https://www.youtube.com/@averekar", label: "YouTube" },
+  { icon: Twitter, href: "https://x.com/AbhijitVerekar", label: "X" },
+  { icon: BookOpen, href: "https://avavero.substack.com/", label: "Substack" },
 ];
 
 export default function Footer() {
