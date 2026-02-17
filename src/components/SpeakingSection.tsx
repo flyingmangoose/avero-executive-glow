@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mic, Youtube, BookOpen, Linkedin, CalendarDays, Users, MapPin, Send, Loader2 } from "lucide-react";
+import { Mic, Youtube, BookOpen, Linkedin, CalendarDays, Users, MapPin, Send, Loader2, CheckCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,6 +27,7 @@ const topics = [
 export default function SpeakingSection() {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -58,11 +59,7 @@ export default function SpeakingSection() {
     ]);
     setSubmitting(false);
     if (success) {
-      toast({
-        title: "Request received!",
-        description: "Thank you for your interest. I'll review your request and get back to you within 48 hours.",
-      });
-      setForm({ name: "", email: "", organization: "", eventName: "", eventDate: "", location: "", topic: "", audienceSize: "", details: "" });
+      setSubmitted(true);
     } else {
       toast({ title: "Something went wrong", description: "Please try again later.", variant: "destructive" });
     }
@@ -109,79 +106,87 @@ export default function SpeakingSection() {
           <ScrollReveal delay={100}>
             <Card className="bg-card border-border/50">
               <CardContent className="p-6 sm:p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-foreground">Your Name *</label>
-                      <Input placeholder="Jane Smith" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="bg-background border-border/50" />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-foreground">Email *</label>
-                      <Input type="email" placeholder="jane@organization.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required className="bg-background border-border/50" />
-                    </div>
+                {submitted ? (
+                  <div className="flex flex-col items-center justify-center text-center py-12">
+                    <CheckCircle className="h-12 w-12 text-primary mb-4" />
+                    <h4 className="text-2xl font-bold mb-2">Request Received!</h4>
+                    <p className="text-muted-foreground">Thank you for your interest. I'll review your request and get back to you within 48 hours.</p>
                   </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground">Your Name *</label>
+                        <Input placeholder="Jane Smith" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="bg-background border-border/50" />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground">Email *</label>
+                        <Input type="email" placeholder="jane@organization.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required className="bg-background border-border/50" />
+                      </div>
+                    </div>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-foreground">Organization *</label>
-                      <Input placeholder="Your company or agency" value={form.organization} onChange={(e) => setForm({ ...form, organization: e.target.value })} required className="bg-background border-border/50" />
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground">Organization *</label>
+                        <Input placeholder="Your company or agency" value={form.organization} onChange={(e) => setForm({ ...form, organization: e.target.value })} required className="bg-background border-border/50" />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground">Event Name</label>
+                        <Input placeholder="Annual Tech Summit 2026" value={form.eventName} onChange={(e) => setForm({ ...form, eventName: e.target.value })} className="bg-background border-border/50" />
+                      </div>
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-foreground">Event Name</label>
-                      <Input placeholder="Annual Tech Summit 2026" value={form.eventName} onChange={(e) => setForm({ ...form, eventName: e.target.value })} className="bg-background border-border/50" />
-                    </div>
-                  </div>
 
-                  <div className="grid sm:grid-cols-3 gap-4">
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-foreground flex items-center gap-1.5">
-                        <CalendarDays className="h-3.5 w-3.5 text-muted-foreground" /> Event Date
-                      </label>
-                      <Input type="date" value={form.eventDate} onChange={(e) => setForm({ ...form, eventDate: e.target.value })} className="bg-background border-border/50" />
+                    <div className="grid sm:grid-cols-3 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground flex items-center gap-1.5">
+                          <CalendarDays className="h-3.5 w-3.5 text-muted-foreground" /> Event Date
+                        </label>
+                        <Input type="date" value={form.eventDate} onChange={(e) => setForm({ ...form, eventDate: e.target.value })} className="bg-background border-border/50" />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground flex items-center gap-1.5">
+                          <MapPin className="h-3.5 w-3.5 text-muted-foreground" /> Location
+                        </label>
+                        <Input placeholder="City, State or Virtual" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} className="bg-background border-border/50" />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground flex items-center gap-1.5">
+                          <Users className="h-3.5 w-3.5 text-muted-foreground" /> Audience Size
+                        </label>
+                        <Input placeholder="e.g. 200" value={form.audienceSize} onChange={(e) => setForm({ ...form, audienceSize: e.target.value })} className="bg-background border-border/50" />
+                      </div>
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-foreground flex items-center gap-1.5">
-                        <MapPin className="h-3.5 w-3.5 text-muted-foreground" /> Location
-                      </label>
-                      <Input placeholder="City, State or Virtual" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} className="bg-background border-border/50" />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-foreground flex items-center gap-1.5">
-                        <Users className="h-3.5 w-3.5 text-muted-foreground" /> Audience Size
-                      </label>
-                      <Input placeholder="e.g. 200" value={form.audienceSize} onChange={(e) => setForm({ ...form, audienceSize: e.target.value })} className="bg-background border-border/50" />
-                    </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">Preferred Topic</label>
-                    <div className="flex flex-wrap gap-2">
-                      {topics.map((t) => (
-                        <button
-                          key={t}
-                          type="button"
-                          onClick={() => setForm({ ...form, topic: form.topic === t ? "" : t })}
-                          className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
-                            form.topic === t
-                              ? "bg-primary/20 border-primary/40 text-primary"
-                              : "border-border/50 text-muted-foreground hover:border-primary/30 hover:text-foreground"
-                          }`}
-                        >
-                          {t}
-                        </button>
-                      ))}
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-foreground">Preferred Topic</label>
+                      <div className="flex flex-wrap gap-2">
+                        {topics.map((t) => (
+                          <button
+                            key={t}
+                            type="button"
+                            onClick={() => setForm({ ...form, topic: form.topic === t ? "" : t })}
+                            className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
+                              form.topic === t
+                                ? "bg-primary/20 border-primary/40 text-primary"
+                                : "border-border/50 text-muted-foreground hover:border-primary/30 hover:text-foreground"
+                            }`}
+                          >
+                            {t}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">Additional Details</label>
-                    <Textarea placeholder="Tell me about your event, audience, and what you'd like me to cover..." rows={4} value={form.details} onChange={(e) => setForm({ ...form, details: e.target.value })} className="bg-background border-border/50" />
-                  </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-foreground">Additional Details</label>
+                      <Textarea placeholder="Tell me about your event, audience, and what you'd like me to cover..." rows={4} value={form.details} onChange={(e) => setForm({ ...form, details: e.target.value })} className="bg-background border-border/50" />
+                    </div>
 
-                  <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={submitting}>
-                    {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting...</> : <>Submit Speaking Request <Send className="ml-2 h-4 w-4" /></>}
-                  </Button>
-                </form>
+                    <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={submitting}>
+                      {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting...</> : <>Submit Speaking Request <Send className="ml-2 h-4 w-4" /></>}
+                    </Button>
+                  </form>
+                )}
               </CardContent>
             </Card>
           </ScrollReveal>
