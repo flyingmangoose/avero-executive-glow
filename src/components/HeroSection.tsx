@@ -30,7 +30,7 @@ export default function HeroSection() {
             Founder &amp; CEO — Avèro Advisors
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-6 font-serif text-foreground leading-[1.1]">
-            I help government leaders prevent the next $216&nbsp;million technology disaster.
+            Fixing government technology, before it breaks.
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
             Author of <em>Start at Zero</em> · 5× Inc. 5000 CEO · Independent Government Technology Advisor
