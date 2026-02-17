@@ -4,7 +4,6 @@ import abhijitPhoto from "@/assets/abhijit-photo.jpeg";
 
 const stats = [
   { icon: TrendingUp, label: "Years in Consulting", value: "20+" },
-  { icon: Users, label: "Team Members", value: "40+" },
   { icon: Award, label: "Gov ERP Engagements", value: "30+" },
   { icon: Zap, label: "Government Exclusive", value: "100%" },
 ];
