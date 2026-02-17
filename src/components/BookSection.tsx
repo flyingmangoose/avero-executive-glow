@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ArrowDown, CheckCircle, Loader2 } from "lucide-react";
 import bookCover from "@/assets/book-cover.jpg";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -31,19 +32,40 @@ const forces = [
   },
 ];
 
-const chapters = [
-  { part: "Part I — Why Projects Fail", title: "The $216M Wake-Up Call", desc: "Forensic examination of why identical challenges produced opposite outcomes." },
-  { part: "Part I", title: "Legacy Time Bombs", desc: "Why waiting costs more than acting — and how to build the case before crisis forces your hand." },
-  { part: "Part II — Regaining Command", title: "Four Pillars of Project Control", desc: "The architecture of control that separates success from disaster." },
-  { part: "Part II", title: "Phase Zero Mastery", desc: "The preparation that creates clarity before vendors arrive." },
-  { part: "Part II", title: "AI-Enabled Requirements", desc: "How AI transforms requirements gathering into a focused, human-centric process." },
-  { part: "Part II", title: "Winning Procurement Strategy", desc: "Crafting RFPs that attract the right vendors and protect your leverage." },
-  { part: "Part III — Executing Without Capture", title: "Vendor Selection", desc: "Spotting allies, dodging traps, and cutting through polished demos." },
-  { part: "Part III", title: "Governance Reimagined", desc: "Structures for decision-making that prevent vendor capture." },
-  { part: "Part III", title: "The Human Element", desc: "Change management that determines adoption or rejection." },
-  { part: "Part III", title: "The Independence Principle", desc: "Building advisory relationships where incentives are permanently aligned." },
-  { part: "Part III", title: "AI Comes of Age", desc: "The new rules — what AI delivers today and how to spot vendor overselling." },
-  { part: "Part III", title: "The Complete Roadmap", desc: "Step-by-step from day one to go-live with every framework integrated." },
+const parts = [
+  {
+    id: "part-1",
+    title: "Part I — Why Projects Fail",
+    subtitle: "Understanding the root causes behind billion-dollar government IT failures",
+    chapters: [
+      { title: "The $216M Wake-Up Call", desc: "Forensic examination of why identical challenges produced opposite outcomes." },
+      { title: "Legacy Time Bombs", desc: "Why waiting costs more than acting — and how to build the case before crisis forces your hand." },
+    ],
+  },
+  {
+    id: "part-2",
+    title: "Part II — Regaining Command",
+    subtitle: "The frameworks and preparation that create clarity before vendors arrive",
+    chapters: [
+      { title: "Four Pillars of Project Control", desc: "The architecture of control that separates success from disaster." },
+      { title: "Phase Zero Mastery", desc: "The preparation that creates clarity before vendors arrive." },
+      { title: "AI-Enabled Requirements", desc: "How AI transforms requirements gathering into a focused, human-centric process." },
+      { title: "Winning Procurement Strategy", desc: "Crafting RFPs that attract the right vendors and protect your leverage." },
+    ],
+  },
+  {
+    id: "part-3",
+    title: "Part III — Executing Without Capture",
+    subtitle: "From vendor selection through go-live — maintaining independence at every stage",
+    chapters: [
+      { title: "Vendor Selection", desc: "Spotting allies, dodging traps, and cutting through polished demos." },
+      { title: "Governance Reimagined", desc: "Structures for decision-making that prevent vendor capture." },
+      { title: "The Human Element", desc: "Change management that determines adoption or rejection." },
+      { title: "The Independence Principle", desc: "Building advisory relationships where incentives are permanently aligned." },
+      { title: "AI Comes of Age", desc: "The new rules — what AI delivers today and how to spot vendor overselling." },
+      { title: "The Complete Roadmap", desc: "Step-by-step from day one to go-live with every framework integrated." },
+    ],
+  },
 ];
 
 export default function BookSection() {
@@ -225,28 +247,61 @@ export default function BookSection() {
             </ScrollReveal>
           </div>
 
-          <div className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {chapters.map((ch, i) => (
-              <ScrollReveal key={i} delay={(i % 3) * 40}>
-                <div
-                  className="rounded-lg p-5 h-full"
-                  style={{
-                    borderLeft: "3px solid #b8dff0",
-                    background: "rgba(255,255,255,0.02)",
-                  }}
-                >
-                  <span className="font-mono text-xs uppercase tracking-wider block mb-2" style={{ color: "hsl(20 90% 48%)" }}>
-                    {ch.part}
-                  </span>
-                  <h5 className="font-bold text-sm mb-1" style={{ color: "#f5f0e8" }}>
-                    {ch.title}
-                  </h5>
-                  <p className="text-xs leading-relaxed" style={{ color: "#64748b" }}>
-                    {ch.desc}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
+          <div className="max-w-3xl mx-auto">
+            <ScrollReveal>
+              <Accordion type="single" collapsible defaultValue="part-1" className="space-y-4">
+                {parts.map((part, partIdx) => (
+                  <AccordionItem
+                    key={part.id}
+                    value={part.id}
+                    className="rounded-xl overflow-hidden border-0"
+                    style={{
+                      background: "rgba(255,255,255,0.03)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                    }}
+                  >
+                    <AccordionTrigger
+                      className="px-6 py-5 hover:no-underline hover:bg-[rgba(255,255,255,0.02)] [&[data-state=open]]:bg-[rgba(255,255,255,0.02)]"
+                    >
+                      <div className="text-left">
+                        <span className="font-mono text-xs font-bold tracking-[0.15em] uppercase block mb-1" style={{ color: "hsl(20 90% 48%)" }}>
+                          {part.title}
+                        </span>
+                        <span className="text-sm" style={{ color: "#8899a6" }}>
+                          {part.subtitle}
+                        </span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-6 pt-0">
+                      <div className="space-y-3">
+                        {part.chapters.map((ch, chIdx) => (
+                          <div
+                            key={chIdx}
+                            className="rounded-lg p-4 flex gap-4 items-start transition-colors hover:bg-[rgba(255,255,255,0.02)]"
+                            style={{
+                              borderLeft: "3px solid #b8dff0",
+                              background: "rgba(255,255,255,0.01)",
+                            }}
+                          >
+                            <span className="font-mono text-xs font-bold mt-0.5 shrink-0" style={{ color: "hsl(20 90% 48%)" }}>
+                              {String(partIdx === 0 ? chIdx + 1 : partIdx === 1 ? chIdx + 3 : chIdx + 7).padStart(2, "0")}
+                            </span>
+                            <div>
+                              <h5 className="font-bold text-sm mb-1" style={{ color: "#f5f0e8" }}>
+                                {ch.title}
+                              </h5>
+                              <p className="text-xs leading-relaxed" style={{ color: "#64748b" }}>
+                                {ch.desc}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </ScrollReveal>
           </div>
         </div>
       </div>
